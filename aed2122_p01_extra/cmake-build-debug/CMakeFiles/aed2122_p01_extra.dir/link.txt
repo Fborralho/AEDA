@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/aed2122_p01_extra.dir/main.cpp.o CMakeFiles/aed2122_p01_extra.dir/Tests/tests.cpp.o CMakeFiles/aed2122_p01_extra.dir/Tests/mail.cpp.o CMakeFiles/aed2122_p01_extra.dir/Tests/postman.cpp.o CMakeFiles/aed2122_p01_extra.dir/Tests/postOffice.cpp.o -o aed2122_p01_extra  lib/libgtestd.a lib/libgtest_maind.a lib/libgtestd.a -lpthread 

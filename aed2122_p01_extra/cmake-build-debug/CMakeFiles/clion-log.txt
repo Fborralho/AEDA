@@ -1,0 +1,4 @@
+/snap/clion/169/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/kruddy/Desktop/AEDA/aed2122_p01_extra
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/kruddy/Desktop/AEDA/aed2122_p01_extra/cmake-build-debug
