@@ -66,7 +66,42 @@ int FunSortProblem::minDifference(const vector<unsigned> &values, unsigned nc) {
 
 // TODO
 unsigned FunSortProblem::minPlatforms (const vector<float> &arrival, const vector<float> &departure) {
-    return 0;
+    vector<float> ar = arrival;
+    vector<float> de = departure;
+    int last_count = 0;
+    int count  = 0;
+    int ind  = 0;
+    for(int i = 0; i < ar.size(); i++){
+        float aux = ar[i];
+        unsigned  j;
+        for(j  = i; j > 0 && aux < ar[j-1]; j--){
+            ar[j] = ar[j-1];
+        }
+        ar[j] = aux;
+    }
+
+    for(int i = 0; i < de.size(); i++){
+        float aux = de[i];
+        unsigned  j;
+        for(j  = i; j > 0 && aux < de[j-1]; j--){
+            de[j] = de[j-1];
+        }
+        de[j] = aux;
+    }
+
+
+    for(int i = 0; i < de.size(); i++){
+        ind  = i;
+        while(de[i] >= ar[ind]){
+            ind ++;
+            count ++;
+        }
+        if(count > last_count){
+            last_count = count;
+        }
+        count = 0;
+    }
+    return last_count;
 }
 
 
