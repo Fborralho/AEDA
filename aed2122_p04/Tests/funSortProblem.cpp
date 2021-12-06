@@ -68,9 +68,9 @@ int FunSortProblem::minDifference(const vector<unsigned> &values, unsigned nc) {
 unsigned FunSortProblem::minPlatforms (const vector<float> &arrival, const vector<float> &departure) {
     vector<float> ar = arrival;
     vector<float> de = departure;
-    int last_count = 0;
-    int count  = 0;
-    int ind  = 0;
+    int max_count = 0;
+    int count;
+    int ind;
     for(int i = 0; i < ar.size(); i++){
         float aux = ar[i];
         unsigned  j;
@@ -91,17 +91,20 @@ unsigned FunSortProblem::minPlatforms (const vector<float> &arrival, const vecto
 
 
     for(int i = 0; i < de.size(); i++){
-        ind  = i;
-        while(de[i] >= ar[ind]){
-            ind ++;
-            count ++;
-        }
-        if(count > last_count){
-            last_count = count;
-        }
+        ind = i;
         count = 0;
+        while(de[i] >= ar[ind]){
+            count ++;
+            ind++;
+            if(count > max_count){
+                max_count = count;
+            }
+            if(ind == ar.size()){
+                return max_count;
+            }
+        }
     }
-    return last_count;
+    return max_count;
 }
 
 
