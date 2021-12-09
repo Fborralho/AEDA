@@ -5,6 +5,7 @@
 #include <list>
 #include <queue>
 #include <string>
+
 using namespace std;
 
 class Game

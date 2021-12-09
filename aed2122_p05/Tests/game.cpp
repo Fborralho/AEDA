@@ -46,22 +46,16 @@ void Game::setKids(const list<Kid>& l1) {
 // TODO
 Kid Game::loseGame(string phrase) {
     int a = numberOfWords(phrase);
-    int x ;
-    if(a == 0){
-        return kids.front();
-    }
-    else if(a > kids.size()){
-        x = kids.size() % a;
-    }
-    else{
-        x = a - 1;
-    }
+    int x = 0;
+    Kid k1;
 
-    list<Kid>::iterator it = kids.begin();
-    advance(it, x);
-    kids.erase(it);
-    return(*it);
-
+    while(kids.size() != 1){
+        x = (a + x - 1) % kids.size();
+        list<Kid>::iterator it = kids.begin();
+        advance(it, x);
+        it = kids.erase(it);
+    }
+    return kids.front();
 }
 
 // TODO
@@ -71,7 +65,45 @@ list<Kid> Game::removeOlder(unsigned id) {
 
 // TODO
 queue<Kid> Game::rearrange() {
-    return(queue<Kid>());
+    queue<Kid> boys;
+    queue<Kid> girls;
+    int n ;
+    for(int i = 0; i < kids.size(); i++){
+        if(kids.front().getSex() == 'm'){
+            boys.push(kids.front());
+            kids.pop_front();
+        }
+        else{
+            girls.push(kids.front());
+            kids.pop_front();
+        }
+    }
+
+    if(girls.size() >= boys.size()){
+        n = girls.size() / boys.size();
+        while(!boys.empty()){
+            for(int i = 0; i < n; i ++){
+                kids.push_back(girls.front());
+                girls.pop();
+            }
+            kids.push_back(boys.front());
+            boys.front();
+        }
+        return girls;
+    }
+    else{
+        n = boys.size() / girls.size();
+        while(!girls.empty()){
+            kids.push_back(girls.front());
+            girls.pop();
+            for(int i = 0; i < n; i++){
+                kids.push_back(boys.front());
+                boys.pop();
+            }
+        }
+        return boys;
+
+    }
 }
 
 // TODO
