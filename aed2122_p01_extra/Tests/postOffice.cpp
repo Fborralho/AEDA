@@ -61,7 +61,6 @@ vector<Mail *> PostOffice::endOfDay(unsigned int &balance) {
     }
     mailToSend.clear();
     balance = tot;
-    res = mailToSend;
 	return res;
 }
 

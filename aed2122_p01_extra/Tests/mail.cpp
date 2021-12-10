@@ -50,6 +50,7 @@ unsigned int GreenMail::getPrice() {
 //--------
 
 // TODO
-unsigned int Mail::getPrice() const {
-	return 0;
+ unsigned int Mail::getPrice()  {
+
+    return 0;
 }

@@ -102,7 +102,7 @@ queue<Kid> Game::rearrange() {
                 boys.pop();
             }
         }
-        
+
         return boys;
     }
 }
