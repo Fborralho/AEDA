@@ -67,8 +67,9 @@ list<Kid> Game::removeOlder(unsigned id) {
 queue<Kid> Game::rearrange() {
     queue<Kid> boys;
     queue<Kid> girls;
+    Kid a;
     int n ;
-    for(int i = 0; i < kids.size(); i++){
+    while(!kids.empty()){
         if(kids.front().getSex() == 'm'){
             boys.push(kids.front());
             kids.pop_front();
@@ -87,22 +88,22 @@ queue<Kid> Game::rearrange() {
                 girls.pop();
             }
             kids.push_back(boys.front());
-            boys.front();
+            boys.pop();
         }
         return girls;
     }
-    else{
+    else {
         n = boys.size() / girls.size();
-        while(!girls.empty()){
+        while(girls.size() != 0){
             kids.push_back(girls.front());
             girls.pop();
-            for(int i = 0; i < n; i++){
+            for(int i = 0; i < n ; i++){
                 kids.push_back(boys.front());
                 boys.pop();
             }
         }
+        
         return boys;
-
     }
 }
 
