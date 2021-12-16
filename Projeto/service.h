@@ -15,7 +15,7 @@ class Service {
     string date;
     string worker;
 public:
-    Service(char mc, string d, string w): main_or_clean(mc), date(d), worker(w){}+*
+    Service(char mc, string d, string w): main_or_clean(mc), date(d), worker(w){}
 };
 
 

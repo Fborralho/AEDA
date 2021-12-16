@@ -5,8 +5,16 @@
 #include "Plane.h"
 using namespace std;
 
+Plane::Plane(string p, int s) {
+    this->plate = p;
+    this-> seats = s;
+}
 int Plane::getSeats() const {
     return seats;
+}
+
+string Plane::getPlate() const {
+    return plate;
 }
 
 void Plane::buySeats(int n, vector<bool>& bag) {
@@ -44,3 +52,24 @@ void Plane::sortFlightsDur(vector<Flight>&f, int left, int right) {
     sortFlightsDur(f, i+1, right);
 }
 
+bool Plane::operator< (Plane &p) {
+    for(int i = 0; i < p.getPlate().size(); i++){
+        if(this->getPlate()[i] != p.getPlate()[i]){
+            if(int(this->getPlate()[i]) < int(p.getPlate()[i])){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+}
+
+
+void Plane::addFLight(const Flight &f1) {
+    flight_plan.push_back(f1);
+}
+
+vector<Flight> Plane::getPlan() {
+    return flight_plan;
+}

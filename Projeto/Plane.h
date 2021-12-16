@@ -15,15 +15,18 @@ class Plane {
     int seats;
     queue<Service> services;
 public:
+    string getPlate() const;
     queue<Service> ser_done;
-    Plane(string p, vector<Flight> f, int s, queue<Service> serv): plate(p),flight_plan(f), seats(s), services(serv){}
+    Plane(string p, int s);
     int getSeats() const;
     void buySeats(int n, vector<bool>& bagage);
     queue<Service> getServices();
     void rem_service();/// removes the next service in queue and adds in done
     void add_service(Service &s);/// adds a new service in queue
     void sortFlightsDur(vector<Flight>&f, int left, int right);
-
+    bool operator< (Plane &p);
+    void addFLight(const Flight &f1);
+    vector<Flight> getPlan();
 };
 
 
