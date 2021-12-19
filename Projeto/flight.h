@@ -18,12 +18,13 @@ public:
     num_flight(n), flight_dur(fli_du), departure_date(dd),
     arrival_date(ad), city_departure(cd), city_arrival(ca){}
 
-    int getDuration();
-    string getArrivalDate();
-    string getDepartureDate();
-    string getCityDep();
-    string getCityArr();
-    int getNum();
+    int getDuration() const;
+    string getArrivalDate() const;
+    string getDepartureDate() const;
+    string getCityDep()const;
+    string getCityArr() const;
+    int getNum() const;
+    string showFlight() const;
 
 };
 

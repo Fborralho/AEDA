@@ -17,7 +17,11 @@ string Plane::getPlate() const {
     return plate;
 }
 
-void Plane::buySeats(int n, vector<bool>& bag) {
+void Plane::buySeats(int n, int bag) {
+    if(seats >= n){
+        seats -= n;
+        numBag += bag;
+    }
 
 }
 
@@ -36,22 +40,6 @@ void Plane::add_service(Service &s) {
 }
 
 
-void Plane::sortFlightsDur(vector<Flight>&f, int left, int right) {
-    int x = f[(right - left) / 2].getDuration();
-    int i = left; int j = right;
-    for( ; ; ){
-        while(f[++i].getDuration() < x);
-        while(x < f[--j].getDuration());
-        if( i < j){
-            swap(f[i], f[j]);
-        }
-        else break;
-    }
-    swap(f[i], f[right -1]);
-    sortFlightsDur(f, left, i-1);
-    sortFlightsDur(f, i+1, right);
-}
-
 bool Plane::operator< (Plane &p) {
     for(int i = 0; i < p.getPlate().size(); i++){
         if(this->getPlate()[i] != p.getPlate()[i]){
@@ -68,8 +56,24 @@ bool Plane::operator< (Plane &p) {
 
 void Plane::addFLight(const Flight &f1) {
     flight_plan.push_back(f1);
+    fullDur += f1.getDuration();
 }
 
-vector<Flight> Plane::getPlan() {
+vector<Flight> Plane::getPlan() const{
     return flight_plan;
+}
+
+int Plane::getDur() const {
+    return fullDur;
+}
+
+
+bool Plane::delFlight(Flight f) {
+    for(int i= 0; i< flight_plan.size(); i++){
+        if(flight_plan[i].getNum() == f.getNum()){
+            flight_plan.erase(flight_plan.begin()+i);
+            return true;
+        }
+    }
+    return false;
 }

@@ -4,24 +4,53 @@
 
 #include "Airport.h"
 
-
 vector<Plane> Airport::getPlanes() {
     return planes;
 }
 
-void Airport::sortPlanes(vector<Plane> &p, int left, int right) {
-    string x = p[(right - left) / 2].getPlate();
-    int i = left; int j = right;
-    for( ; ; ){
-        while(p[++i].getPlate() < x);
-
-        while(x < p[--j].getPlate());
-        if( i < j){
-            swap(p[i], p[j]);
+void Airport::sortByPlate(){
+    for(int i = 0; i < planes.size()-1; i++){
+        unsigned  imin = i;
+        for(int j = i + 1; j < planes.size(); j++){
+            if(planes[j].getPlate() < planes[imin].getPlate()){
+                imin = j;
+            }
         }
-        else break;
+        swap(planes[i], planes[imin]);
     }
-    swap(p[i], p[right -1]);
-    sortPlanes(p, left, i-1);
-    sortPlanes(p, i+1, right);
 }
+
+
+void Airport::sortByFullDur() {
+    for(int i  = 0; i < planes.size() -1 ; i++){
+        unsigned imin = i;
+        for(int j = i+1; j < planes.size(); j++){
+            if(planes[j].getDur() < planes[imin].getDur()){
+                imin = j;
+            }
+        }
+        swap(planes[i], planes[imin]);
+    }
+}
+
+
+bool Airport::delPlane(Plane p) {
+    for(int i = 0; i < planes.size(); i++){
+        if(planes[i].getPlate() == p.getPlate()){
+            planes.erase(planes.begin()+i);
+            return true;
+        }
+    }
+    return false;
+}
+
+
+void Airport::showFlights() const {
+    for(int i = 0; i < planes.size(); i++){
+        cout << planes[i].getPlate() << endl;
+        for(int j = 0; j < planes[i].getPlan().size(); j++){
+            planes[i].getPlan()[j].showFlight();
+        }
+    }
+}
+

@@ -5,6 +5,7 @@
 #ifndef PROJETO_AIRPORT_H
 #define PROJETO_AIRPORT_H
 #include "Plane.h"
+#include <stack>
 
 using namespace std;
 
@@ -12,9 +13,13 @@ class Airport {
 string city;
 vector<Plane> planes;
 public:
-    Airport(string c, vector<Plane> p): city(c), planes(p){}
+    Airport(string c, vector<Plane> &p): city(c), planes(p){}
     vector<Plane> getPlanes();
-    void sortPlanes(vector<Plane> &p, int left, int right);
+    void sortByPlate();
+    void sortByFullDur();
+    bool delPlane(Plane p);
+    void showFlights() const;
+
 };
 
 

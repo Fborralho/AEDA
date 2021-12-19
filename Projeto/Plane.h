@@ -14,19 +14,24 @@ class Plane {
     vector<Flight> flight_plan;
     int seats;
     queue<Service> services;
+    int fullDur=0;
+    int numBag = 0;
 public:
     string getPlate() const;
     queue<Service> ser_done;
     Plane(string p, int s);
     int getSeats() const;
-    void buySeats(int n, vector<bool>& bagage);
+    void buySeats(int n, int bag);
     queue<Service> getServices();
     void rem_service();/// removes the next service in queue and adds in done
     void add_service(Service &s);/// adds a new service in queue
-    void sortFlightsDur(vector<Flight>&f, int left, int right);
     bool operator< (Plane &p);
     void addFLight(const Flight &f1);
-    vector<Flight> getPlan();
+    vector<Flight> getPlan() const;
+    int getDur() const;
+    bool delFlight(Flight f);
+
+
 };
 
 
